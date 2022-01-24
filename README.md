@@ -1,4 +1,3 @@
-# petaiproject
 # PETAI
 CLI tools for quick reverse shell one liner
 
