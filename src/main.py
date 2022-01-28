@@ -14,7 +14,7 @@ def rvshell(id, lhost, lport):
                 print(f"\n {c.BOLD}{c.BGREEN}The Command:{c.RESET} {vista}")
                 print("---------------------------------------------------")
                 print(f" [{c.BGREEN}X{c.RESET}] {c.BYELLOW}stARt LIsTeNing...{c.RESET}")
-                os.system(f"nc -lnvp {lhost} {lport}")
+                os.system(f"nc -lnvp {lport}")
                 break
 
 def main():
