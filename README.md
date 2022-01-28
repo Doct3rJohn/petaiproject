@@ -1,7 +1,8 @@
 # PETAI
-CLI tools for quick reverse shell one liner
+CLI tools for generate reverse shell by using python
 
 # USAGE
-exa: python3 petai.py -r 1 -i 10.10.10.10 -p 8888
+exa: python3 petai.py -s 1 -lh 10.10.10.10 -lp 8888
 
-very simple command line tools. I hope this tool can improve in the future. For now, bash is the only shell that is available.
+# Why this tools?
+I got inspire by this project [0day](https://twitter.com/0dayCTF) - [revshells.com](https://www.revshells.com/)
