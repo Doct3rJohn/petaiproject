@@ -1,6 +1,6 @@
 import sys, json, os
 from src.budu import help_me, index_err, banner, rvshell, c
-from src.crab import the_list
+from src.snarai import the_list
 
 def main():
     try:
