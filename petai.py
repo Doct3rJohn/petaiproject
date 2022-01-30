@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 #Author     : Doct3rJohn @_shafiqaiman_
-#Date       : 16:03:2021
-#Update     : 28:01:2022
-#Version    : v0.0.3   
+#Created    : 16:03:2021
+#Update     : 31:1:2022
+#Version    : v0.0.3.2
 
 from src.main import main
 
