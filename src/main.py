@@ -1,6 +1,7 @@
 import sys, json, os
-from src.budu import help_me, index_err, banner, rvshell, c
+from src.budu import help_me, index_err, banner, rvshell
 from src.snarai import the_list
+from rich.console import Console; console = Console()
 
 def main():
     try:
@@ -15,11 +16,12 @@ def main():
                     lhost = sys.argv[4]
                     if sys.argv[5] == "--lport" or sys.argv[5] == "-p":
                         lport = sys.argv[6]
+                        banner()
                         rvshell(shell_id, lhost, lport)
                     else:
-                        print(f"\n {c.BRED}#  '{sys.argv[5]}'  {c.RESET} \n Do you mean... {c.BGREEN}'-p/--lport'{c.RESET} <{c.BBLUE}listening_port{c.RESET}/{c.BBLUE}LPORT{c.RESET}>")
+                        console.print(f"\n[yellow1 on black]!! '{sys.argv[5]}'[/]\nDo you mean... '[light_green]-p/--lport[/]' <[medium_orchid]listening_port[/]/[medium_orchid]LPORT[/]>")
                 else:
-                    print(f"\n {c.BRED}#  '{sys.argv[3]}'  {c.RESET} \n Do you mean... {c.BGREEN}'-i/--lhost'{c.RESET} <{c.BBLUE}ip_address{c.RESET}/{c.BBLUE}LHOST{c.RESET}>")
+                    console.print(f"\n[yellow1 on black]!! '{sys.argv[3]}'[/]\nDo you mean... '[light_green]-i/--lhost[/]' <[medium_orchid]ip_address[/]/[medium_orchid]LHOST[/]>")
             except IndexError:
                 print(" Missing an Arguments")
         else:
