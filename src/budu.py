@@ -1,16 +1,5 @@
 import sys, json, os
-
-class c:
-    BMAGENTA = '\033[95m'
-    BBLACK = '\033[100m'
-    BBLUE = '\033[94m'
-    BCYAN = '\033[96m'
-    BGREEN = '\033[92m'
-    BYELLOW = '\033[93m'
-    BRED = '\033[91m'
-    RESET = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+from rich.console import Console; console = Console()
 
 def banner():
     print(" _______  ________ ________  ______  ______ ")
@@ -24,27 +13,25 @@ def banner():
     print(" \▓▓      \▓▓▓▓▓▓▓▓   \▓▓   \▓▓   \▓▓\▓▓▓▓▓▓ v0.0.3\n")                                                                                        
                                             
 def help_me():
-    print("")
-    print(f" {c.BBLUE}###################################################")
-    print(f" #                                                 #{c.RESET}")
-    print(f" {c.BBLUE}#{c.RESET} {c.BOLD}{c.BBLACK}{c.BYELLOW}Example: petai.py -id 1 -i 10.10.10.10 -p 1000{c.RESET} {c.BBLUE}#{c.RESET}")
-    print(f" {c.BBLUE}#                                                 #")
-    print(f" ###################################################{c.RESET}\n")
-    print(f" {c.BGREEN}{c.UNDERLINE}Usage:{c.RESET} petai.py [{c.BGREEN}--help{c.RESET}]  [-id [{c.BGREEN}REVERSE SHELL ID{c.RESET}]]  [-i [{c.BGREEN}LHOST{c.RESET}]]  [-p [{c.BGREEN}LPORT{c.RESET}]]")
-    print(f" \n\n {c.UNDERLINE}{c.BOLD}{c.BBLACK}{c.BYELLOW}OPTIONS:{c.RESET}")
-    print(" -id / --id <reverse_shell_id>        :   Reverse Shell ID")
-    print(" -i  / --lhost <ip_address>/LHOST     :   Ip Address")
-    print(" -p  / --lport <listening_port/LPORT> :   Port")
-    print(" ")
-    print(f" {c.UNDERLINE}{c.BOLD}{c.BBLACK}{c.BYELLOW}WHY NOT OPTIONS:{c.RESET}")
-    print(" --help:      show help")
-    print(" --list:      list all reverse shell [ID]")
+    console.print("\n[royal_blue1]###################################################[/]")
+    console.print("[royal_blue1]#                                                 #[/]")
+    console.print("[royal_blue1]#[/]  [bold orange3 on black]Example:[/][on black]petai.py -id 1 -i 10.10.10.10 -p 1000[/]  [royal_blue1]#[/]")
+    console.print("[royal_blue1]#                                                 #[/]")
+    console.print("[royal_blue1]###################################################[/]")
+    console.print("\n[underline light_green]Usage:[/] petai.py [[light_green]--help[/]]  [-id [[light_green]REVERSE SHELL ID[/]]]  [-i [[light_green]LHOST[/]]]  [-p [[light_green]LPORT[/]]]\n\n")
+    console.print("[bold underline orange3 on black]OPTIONS:[/]")
+    console.print("-id / --id <[orchid]reverse_shell_id[/]>        :   Reverse Shell ID")
+    console.print("-i  / --lhost <[orchid]ip_address[/]/LHOST>     :   Ip Address")
+    console.print("-p  / --lport <[orchid]listening_port[/]/LPORT> :   Port")
+    console.print("\n[bold underline orange3 on black]WHY NOT OPTIONS:[/]")
+    console.print("--help :  show help")
+    console.print("--list :  list all the reverse shell [ID]")
 
 def index_err():
-    print(f" {c.BGREEN}{c.UNDERLINE}Usage:{c.RESET} petai.py [{c.BGREEN}--help{c.RESET}]  [-id [{c.BGREEN}REVERSE SHELL ID{c.RESET}]]  [-i [{c.BGREEN}LHOST{c.RESET}]]  [-p [{c.BGREEN}LPORT{c.RESET}]]\n\n")
-    print(f" {c.BOLD}{c.BBLACK}{c.BYELLOW}Example: petai.py -id 1 -i 10.10.10.10 -p 1000{c.RESET}")
-    print(f" {c.BOLD}{c.BBLACK}{c.BYELLOW}Example: petai.py --id 1 --lhost 10.10.10.10 --lport 1000{c.RESET}")
-    print(f" {c.BYELLOW}Error{c.RESET}: Sorry, Try This '{c.BGREEN}--help{c.RESET}'")
+    console.print("[underline light_green]Usage:[/] petai.py [[light_green]--help[/]]  [-id [[light_green]REVERSE SHELL ID[/]]]  [-i [[light_green]LHOST[/]]]  [-p [[light_green]LPORT[/]]]\n\n")
+    console.print("[bold orange3 on black]Example:[/][on black]petai.py -id 1 -i 10.10.10.10 -p 1000[/]")
+    console.print("[bold orange3 on black]Example:[/][on black]petai.py --id 1 --lhost 10.10.10.10 --lport 1000[/]\n")
+    console.print("[red][!]Error[/]: Sorry, Try This '[light_green]--help[/]'")
 
 def rvshell(id, lhost, lport):
     with open("src/jering.json", 'r') as f:
@@ -54,8 +41,8 @@ def rvshell(id, lhost, lport):
                 payload = i['shell']
                 xp = payload.replace("lhost", lhost)
                 vista = xp.replace("lport", lport)
-                print(f"\n {c.BOLD}{c.BGREEN}The Command:{c.RESET} {vista}")
+                console.print(f"[bold light_green]The Command:[/] [white]{vista}[/]")
                 print("---------------------------------------------------")
-                print(f" [{c.BGREEN}X{c.RESET}] {c.BYELLOW}stARt LIsTeNing...{c.RESET}")
+                console.print(f"[[light_green]X[/]] [bold gold1]stARt tHe lisTeNer oN {lport}[/]")
                 os.system(f"nc -lnvp {lport}")
                 break
