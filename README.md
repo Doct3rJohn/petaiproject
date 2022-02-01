@@ -1,3 +1,5 @@
+![](https://github.com/Doct3rJohn/petaiproject/blob/master/demo/demo.gif)
+
 # Petaiproject
 
  _This project insipre by [@0dayCTF](https://twitter.com/0dayCTF)_ - [Reverse Shell Generator](https://www.revshells.com/)
@@ -10,7 +12,7 @@ git clone https://github.com/Doct3rJohn/petaiproject.git && cd petaiproject && p
 ```
 
 # Usage
-
+![](https://github.com/Doct3rJohn/petaiproject/blob/master/demo/usage_help.png)
 
 # Reverse Shell List
 _will add more in the future_
