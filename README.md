@@ -27,6 +27,13 @@ _will add more in the future_
 		"python2",
 		"python3",
 		"ruby",
+		"golang",
+		"awk",
+		"lua -e",
+		"telnet",
+		"nodejs",
+		"windows conpty",
+		"groovy",
 	]
 }
 ```
